@@ -46,4 +46,10 @@ public class PersistentRegistryTest {
     void givenEntityNotCachedWhenRetrievingForItThenReturnFalse() {
         assertThat(registry.isCached("<default>", "Fruit")).isFalse();
     }
+
+    @Test
+    @DisplayName("given entity cached when retrieving for it then return true")
+    void givenEntityCachedWhenRetrievingForItThenReturnTrue() {
+        assertThat(registry.isCached("<default>", "Order")).isTrue();
+    }
 }
