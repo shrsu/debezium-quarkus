@@ -8,6 +8,9 @@ package io.debezium.quarkus.hibernate.cache.deployment;
 
 import jakarta.inject.Inject;
 
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.StringAsset;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
@@ -32,7 +35,8 @@ public class PersistentRegistryTest {
     static QuarkusUnitTest runner = new QuarkusUnitTest()
             .withApplicationRoot((jar) -> jar
                     .addClasses(Order.class, Product.class, User.class, Fruit.class))
-            .withConfigurationResource("application.properties");
+            .overrideConfigKey("quarkus.hibernate-orm.schema-management.strategy", "validate")
+            .overrideConfigKey("quarkus.hibernate-orm.database.default-schema", "inventory");
 
     @Test
     @DisplayName("should inject the persistent unit registry")
