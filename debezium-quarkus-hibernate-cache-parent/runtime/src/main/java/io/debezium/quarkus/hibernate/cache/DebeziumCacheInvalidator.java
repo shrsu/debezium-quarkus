@@ -6,10 +6,10 @@
 
 package io.debezium.quarkus.hibernate.cache;
 
-import java.util.Optional;
+import org.apache.kafka.connect.source.SourceRecord;
 
-public interface PersistenceUnitRegistry {
-    boolean isCached(String unit, String table);
+import io.debezium.runtime.CapturingEvent;
 
-    Optional<Class<?>> retrieve(String unit, String table);
+public interface DebeziumCacheInvalidator {
+    void evaluate(CapturingEvent<SourceRecord> event);
 }

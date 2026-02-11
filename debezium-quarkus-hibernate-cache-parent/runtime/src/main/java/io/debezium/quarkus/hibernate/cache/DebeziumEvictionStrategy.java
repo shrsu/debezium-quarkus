@@ -6,10 +6,6 @@
 
 package io.debezium.quarkus.hibernate.cache;
 
-import java.util.Optional;
-
-public interface PersistenceUnitRegistry {
-    boolean isCached(String unit, String table);
-
-    Optional<Class<?>> retrieve(String unit, String table);
+public interface DebeziumEvictionStrategy {
+    void evict(InvalidationEvent event);
 }
