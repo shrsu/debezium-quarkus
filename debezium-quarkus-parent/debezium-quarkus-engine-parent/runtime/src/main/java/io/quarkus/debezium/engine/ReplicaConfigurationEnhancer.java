@@ -33,8 +33,8 @@ public abstract class ReplicaConfigurationEnhancer implements DebeziumConfigurat
         int value = switch (replicaConfiguration.get()) {
             case Mode.DEFAULT -> config
                     .getOptionalValue("HOSTNAME", String.class)
-                            .map(a -> Math.abs(a.hashCode()))
-                            .orElseGet(this::calculateRandomly);
+                    .map(a -> Math.abs(a.hashCode()))
+                    .orElseGet(this::calculateRandomly);
             case Mode.RANDOM -> calculateRandomly();
         };
 
