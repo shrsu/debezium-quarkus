@@ -1,9 +1,15 @@
-name: Debezium Quarkus Hibernate Cache
-#description: Do something useful.
+name: "Hibernate Cache Debezium Extension for Quarkus"
+description: "Debezium Extensions for Quarkus integrates the hibernate 2LC invalidation in Quarkus, enabling developers to invalidate hibernate caches following CDC events"
 metadata:
-#  keywords:
-#    - debezium-quarkus-hibernate-cache
-#  guide: https://docs.quarkiverse.io/debezium-quarkus-hibernate-cache/dev/ # To create and publish this guide, see https://github.com/quarkiverse/quarkiverse/wiki#documenting-your-extension
-#  categories:
-#    - "miscellaneous"
-#  status: "preview"
+  keywords:
+    - "debezium"
+    - "cdc"
+    - "hibernate"
+    - "2LC"
+    - "cache"
+  categories:
+    - "integration"
+    - "cdc"
+    - "hibernate"
+    - "cache"
+  status: "stable"
