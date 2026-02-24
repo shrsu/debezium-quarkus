@@ -81,7 +81,7 @@ jobs:
         uses: actions/checkout@v6
       - uses: ./.github/actions/build-debezium-quarkus-runtime-core
         with:
-          maven-cache-key: debezium-quarkus-PR-build-${{ hashFiles('**/pom.xml') }}
+          maven-cache-key: debezium-quarkus-CI-build-${{ hashFiles('**/pom.xml') }}
   build-runtime-extensions:
     name: "Debezium Quarkus Extensions Matrix"
     runs-on: ubuntu-latest
@@ -104,6 +104,6 @@ jobs:
         uses: actions/checkout@v6
       - uses: ./.github/actions/build-debezium-quarkus-runtime-extension
         with:
-          maven-cache-key: debezium-quarkus-PR-build-${{ hashFiles('**/pom.xml') }}
+          maven-cache-key: debezium-quarkus-CI-build-${{ hashFiles('**/pom.xml') }}
           maven-props: ${{ matrix.maven-props }}}
           connector: ${{ matrix.connectors }}
