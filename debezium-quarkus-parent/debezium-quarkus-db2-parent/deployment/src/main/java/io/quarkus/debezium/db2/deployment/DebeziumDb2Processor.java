@@ -38,6 +38,7 @@ import io.quarkus.debezium.engine.Db2EngineProducer;
 import io.quarkus.deployment.IsNormal;
 import io.quarkus.deployment.annotations.BuildProducer;
 import io.quarkus.deployment.annotations.BuildStep;
+import io.quarkus.deployment.builditem.nativeimage.NativeImageConfigBuildItem;
 import io.quarkus.deployment.builditem.nativeimage.ReflectiveClassBuildItem;
 import io.quarkus.deployment.dev.devservices.DevServicesConfig;
 import io.quarkus.deployment.pkg.steps.NativeOrNativeSourcesBuild;
@@ -58,6 +59,17 @@ class DebeziumDb2Processor implements QuarkusEngineProcessor<AgroalDatasourceCon
     @Override
     public DebeziumConnectorBuildItem engine() {
         return new DebeziumConnectorBuildItem(DB2, Db2EngineProducer.class, Db2Connector.class);
+    }
+
+    @BuildStep(onlyIf = NativeOrNativeSourcesBuild.class)
+    NativeImageConfigBuildItem nativeImageConfiguration() {
+        // The DB2 JDBC driver has been updated with conditional checks for the
+        // "QuarkusWithJcc" system property which will no-op some code paths that
+        // are not needed for T4 JDBC usage and are incompatible with native mode,
+        // including setting TCP_KEEPIDLE which is unsupported in GraalVM native image.
+        return NativeImageConfigBuildItem.builder()
+                .addNativeImageSystemProperty("QuarkusWithJcc", "true")
+                .build();
     }
 
     @BuildStep(onlyIf = NativeOrNativeSourcesBuild.class)
