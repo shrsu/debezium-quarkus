@@ -36,7 +36,6 @@ import io.quarkus.debezium.deployment.QuarkusEngineProcessor;
 import io.quarkus.debezium.deployment.items.DebeziumConnectorBuildItem;
 import io.quarkus.debezium.deployment.items.DebeziumExtensionNameBuildItem;
 import io.quarkus.debezium.engine.Db2EngineProducer;
-import io.quarkus.deployment.IsDevelopment;
 import io.quarkus.deployment.IsNormal;
 import io.quarkus.deployment.annotations.BuildProducer;
 import io.quarkus.deployment.annotations.BuildStep;
